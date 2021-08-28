@@ -22,7 +22,7 @@ export const createPost = (post, user) => {
 export const indexPosts = (user) => {
   return axios({
     method: 'GET',
-    url: apiUrl + '/posts/',
+    url: apiUrl + '/home/',
     headers: {
       Authorization: `Bearer ${user.token}`
     }

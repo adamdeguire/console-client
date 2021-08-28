@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 import { createComment } from '../../../api/comments'
 import { createCommentFailure } from '../../AutoDismissAlert/messages'
-import uniqid from 'uniqid'
+import { v4 as uuid } from 'uuid'
 
 import Form from 'react-bootstrap/Form'
 
@@ -21,7 +21,7 @@ class CreateComment extends Component {
   }
 
   componentDidMount () {
-    this.setState({ _id: uniqid() })
+    this.setState({ _id: uuid() })
   }
 
   handleChange = (event) =>
@@ -54,7 +54,7 @@ class CreateComment extends Component {
         })
       })
       .finally(() => {
-        this.setState({ _id: uniqid() })
+        this.setState({ _id: uuid() })
       })
   }
 

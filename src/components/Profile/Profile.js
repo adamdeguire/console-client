@@ -11,24 +11,46 @@ class Profile extends Component {
   constructor (props) {
     super(props)
 
+    this._isMounted = false
+
     this.state = {
       posts: [],
-      loading: false
+      path: ''
     }
   }
 
   componentDidMount () {
-    const { user, match, msgAlert } = this.props
+    this._isMounted = true
+    const { history } = this.props
+    const { path } = this.state
+    this.getUserProfile(history.location.pathname)
+    this.setState({ path: history.location.pathname })
+    this.unlisten = history.listen(location => {
+      const pathStart = location.pathname.split('/')[1]
+      if (location.pathname !== path && pathStart === 'profile') {
+        this.getUserProfile(location.pathname)
+      }
+    })
+  }
 
-    getProfile(user, match.params.username)
-      .then(res => this.setState({ posts: res.data.posts }))
-      .catch(err => {
-        msgAlert({
-          heading: 'Couldn\'t Create Post',
-          message: indexPostsFailure + err.message,
-          variant: 'danger'
+  componentWillUnmount () {
+    this._isMounted = false
+    this.unlisten()
+  }
+
+  getUserProfile = (path) => {
+    if (this._isMounted) {
+      const { user, msgAlert } = this.props
+      getProfile(user, path)
+        .then(res => this.setState({ posts: res.data.posts }))
+        .catch(err => {
+          msgAlert({
+            heading: 'Couldn\'t Create Post',
+            message: indexPostsFailure + err.message,
+            variant: 'danger'
+          })
         })
-      })
+    }
   }
 
   updatePosts = (post) => {
