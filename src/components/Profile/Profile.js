@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { indexUserPosts } from '../../api/posts'
+import { getProfile } from '../../api/profile'
 import { indexPostsFailure } from '../AutoDismissAlert/messages'
 
 import PostContainer from '../posts/PostContainer/PostContainer'
@@ -18,21 +18,10 @@ class Profile extends Component {
   }
 
   componentDidMount () {
-    const { user, location, msgAlert } = this.props
-    console.log(location)
+    const { user, match, msgAlert } = this.props
 
-    indexUserPosts(user, location.search)
-      .then(res => {
-        console.log(res)
-        return res
-      })
-      .then(res => {
-        console.log(res)
-        return res
-      })
-      .then(res => this.setState({
-        posts: res.data.posts.reverse()
-      }))
+    getProfile(user, match.params.username)
+      .then(res => this.setState({ posts: res.data.posts }))
       .catch(err => {
         msgAlert({
           heading: 'Couldn\'t Create Post',

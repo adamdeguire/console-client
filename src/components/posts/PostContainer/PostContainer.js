@@ -45,8 +45,6 @@ class PostContainer extends Component {
     }
   }
 
-  // new function to delete a comment
-
   componentDidMount () {
     const { post } = this.props
     this.setState({ comments: post.comments })
@@ -86,7 +84,7 @@ class PostContainer extends Component {
       <div className="post postContainer" onClick={e => this.goToPost(e)}>
         <p className="post postTitle">
           <Link
-            to={`/posts?user=${post.owner._id}`}
+            to={`/profile/${post.owner.username}`}
             className="postOwner">{post.owner.username}
           </Link>
           {post.title}
