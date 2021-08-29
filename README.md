@@ -1,5 +1,5 @@
 # { Console } 
-
+![App Home View](https://i.imgur.com/5oOL1nw.png)
 Social app where programmers can share code with, and *console* their fellow programmers.
 
 ## User Stories
