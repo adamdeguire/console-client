@@ -3,8 +3,18 @@ import { Link, withRouter } from 'react-router-dom'
 
 import CreateComment from '../../comments/CreateComment/CreateComment'
 import Comments from '../../comments/Comments'
+import PostDate from '../../PostDate/PostDate'
 
+import Editor from 'react-simple-code-editor'
 import Button from 'react-bootstrap/Button'
+
+import { highlight, languages } from 'prismjs/components/prism-core'
+import 'prismjs/components/prism-clike'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-python'
+import 'prismjs/components/prism-markup'
+import 'prismjs/components/prism-css'
+import 'prismjs/themes/prism-dark.css'
 
 import './PostContainer.scss'
 
@@ -82,22 +92,21 @@ class PostContainer extends Component {
     )
     return (
       <div className="post postContainer" onClick={e => this.goToPost(e)}>
-        <p className="post postTitle">
+        <div className="post postTitle">
           <Link
             to={`/profile/${post.owner.username}`}
             className="postOwner">{post.owner.username}
           </Link>
           {post.title}
-        </p>
-        <div className="post postContent">
-          {post.content.split('\n').map((line, index) => {
-            return (
-              <p className="code" key={index}>
-                {line.replace(' ', '\u00A0')}
-              </p>
-            )
-          })}
+          <PostDate createdAt={post.createdAt}/>
         </div>
+        <Editor className="border codeEditor post postContent"
+          placeholder='// your code here'
+          value={post.content}
+          onValueChange={() => null}
+          highlight={content => highlight(content, languages.js)}
+          padding={10}
+        />
         <Button className="showComments" size='sm' variant='outline-primary' onClick={this.toggleComments}>
           {showComments ? 'Hide Comments' : `${comments.length} Comment${s}`}
         </Button>
