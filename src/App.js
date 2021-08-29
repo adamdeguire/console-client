@@ -69,7 +69,7 @@ class App extends Component {
 	          deleteAlert={this.deleteAlert}
 	        />
 	      ))}
-	      <main className='container col-sm-12 col-lg-8'>
+	      <main className='container col-sm-12 col-lg-4'>
 	        <Route
 	          path='/sign-up'
 	          render={() => (
