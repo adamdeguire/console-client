@@ -40,7 +40,7 @@ onSignUp = (event) => {
         variant: 'success'
       })
     )
-    .then(() => history.push('/'))
+    .then(() => history.push('/home'))
     .catch((error) => {
       this.setState({ email: '', password: '', passwordConfirmation: '' })
       msgAlert({
