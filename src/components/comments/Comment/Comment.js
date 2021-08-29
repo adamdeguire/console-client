@@ -4,6 +4,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom'
 
 import EditComment from '../EditComment'
 import { deleteComment } from '../../../api/comments'
+import PostDate from '../../PostDate/PostDate'
 
 import Button from 'react-bootstrap/Button'
 import './Comment.scss'
@@ -82,10 +83,11 @@ class Comment extends Component {
         <div onClick={() => this.toggle('showButtons')}>
           <div className="comment">
             <Link
-              to={`/posts?user=${comment.owner}`}
+              to={`/profile/${comment.ownerName}`}
               className="commentOwner">{comment.ownerName}
             </Link>
             {showEdit ? editCommentJsx : comment.content}
+            <PostDate createdAt={comment.createdAt}/>
             {renderButtons ? modifyButtonsJsx : ''}
           </div>
         </div>

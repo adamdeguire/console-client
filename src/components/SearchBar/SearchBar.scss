@@ -1,9 +1,9 @@
 :root {
-  --top: 30px;
+  --top: 70px;
 }
 
 .searchBar {
-  width: 20vw;
+  width: 15vw;
   z-index: 999;
   position: absolute;
   top: var(--top);
@@ -12,9 +12,9 @@
 
 .searchInput {
   color: white;
-  width: 20vw;
+  width: 15vw;
   outline: none;
-  background-color: #133654;
+  background-color: 	rgba(0,0,0,.5);
   border-color: transparent;
   border-radius: 10px;
 
@@ -25,14 +25,14 @@
 
 .resultContainer {
   z-index: 998;
-  background-color: #133654;
+  background-color: 	rgba(0,0,0,.3);
   border-top: unset;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
   position: absolute;
-  top: calc(var(--top) + 20px);
+  top: calc(var(--top) + 43px);
   right: 30px;
   height: auto;
-  width: 20vw;
+  width: 15vw;
 }
 
 .result {
@@ -41,11 +41,13 @@
 }
 
 .resultLink {
-  color: #f28444;
+  transition: .2s;
+  color: white !important;
   font-weight: 500;
   text-decoration: none;
 
    &:hover {
-     color: #f26241;
+    color: white !important;
+    text-shadow: 1px 0 white;
    }
 }

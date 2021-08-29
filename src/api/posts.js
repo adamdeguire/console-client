@@ -22,7 +22,7 @@ export const createPost = (post, user) => {
 export const indexPosts = (user) => {
   return axios({
     method: 'GET',
-    url: apiUrl + '/posts/',
+    url: apiUrl + '/home/',
     headers: {
       Authorization: `Bearer ${user.token}`
     }
@@ -33,16 +33,6 @@ export const showPost = (user, postId) => {
   return axios({
     method: 'GET',
     url: `${apiUrl}/posts/${postId}`,
-    headers: {
-      Authorization: `Bearer ${user.token}`
-    }
-  })
-}
-
-export const indexUserPosts = (user, profileId) => {
-  return axios({
-    method: 'GET',
-    url: `${apiUrl}/posts${profileId}`,
     headers: {
       Authorization: `Bearer ${user.token}`
     }

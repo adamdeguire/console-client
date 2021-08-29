@@ -14,7 +14,8 @@ export const createComment = (comment, user, postId) => {
         ownerName: comment.ownerName,
         owner: comment.owner,
         content: comment.content,
-        _id: comment._id
+        _id: comment._id,
+        createdAt: comment.createdAt
       }
     }
   })

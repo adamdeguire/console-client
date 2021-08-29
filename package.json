@@ -1,5 +1,5 @@
 {
-  "homepage": "https://console-social-app.github.io/console-client",
+  "homepage": "https://adamdeguire.github.io/console-client",
   "name": "console-client",
   "version": "0.1.0",
   "private": true,
@@ -25,7 +25,6 @@
     "react-scripts": "4.0.3",
     "react-simple-code-editor": "^0.11.0",
     "resolve": "^1.18.1",
-    "uniqid": "^5.4.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

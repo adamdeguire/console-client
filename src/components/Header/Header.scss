@@ -1,25 +1,26 @@
 #header {
-  background-color: #205a8c;
-  border-radius: 0 0 25px 25px
+  background-color: transparent;
+  border-radius: 0 0 25px 25px;
 }
 
 #headerTitle {
   margin: 0 15px;
-  font-size: 40px;
-  color: #FFF;
+  font-size: 100px;
+  color: white;
   text-decoration: none;
 
   &:hover {
-    text-shadow: .75px 0 #FFF
+    text-shadow: .75px 0 white
   }
 }
 
 .nav-link {
   color: white !important;
   font-weight: 500;
-  font-size: large;
+  font-size: x-large;
 
   &:hover {
+  color: white !important;
   text-shadow: .5px 0 white;
   }
 }

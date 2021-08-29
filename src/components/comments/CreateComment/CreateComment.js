@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 import { createComment } from '../../../api/comments'
 import { createCommentFailure } from '../../AutoDismissAlert/messages'
-import uniqid from 'uniqid'
+import { v4 as uuid } from 'uuid'
 
 import Form from 'react-bootstrap/Form'
 
@@ -21,7 +21,7 @@ class CreateComment extends Component {
   }
 
   componentDidMount () {
-    this.setState({ _id: uniqid() })
+    this.setState({ _id: uuid() })
   }
 
   handleChange = (event) =>
@@ -31,31 +31,34 @@ class CreateComment extends Component {
 
   onCreateComment = (event) => {
     event.preventDefault()
+    const timestamp = Date.now()
+    this.setState({ createdAt: timestamp }, () => {
+      const { msgAlert, user, postId, updateComments, showComments, toggleComments } = this.props
+      const { content, _id, timestamp } = this.state
 
-    const { msgAlert, user, postId, updateComments, showComments, toggleComments } = this.props
-    const { content, _id } = this.state
-
-    createComment(this.state, user, postId)
-      .then(() =>
-        updateComments({
-          ownerName: user.username,
-          owner: user._id,
-          content,
-          _id
+      createComment(this.state, user, postId)
+        .then(() =>
+          updateComments({
+            ownerName: user.username,
+            owner: user._id,
+            content,
+            _id,
+            createdAt: timestamp
+          })
+        )
+        .then(() => { if (!showComments) toggleComments() })
+        .then(() => { this.setState({ content: '' }) })
+        .catch((err) => {
+          msgAlert({
+            heading: 'Couldn\'t Create Comment',
+            message: createCommentFailure + err.message,
+            variant: 'danger'
+          })
         })
-      )
-      .then(() => { if (!showComments) toggleComments() })
-      .then(() => { this.setState({ content: '' }) })
-      .catch((err) => {
-        msgAlert({
-          heading: 'Couldn\'t Create Comment',
-          message: createCommentFailure + err.message,
-          variant: 'danger'
+        .finally(() => {
+          this.setState({ _id: uuid() })
         })
-      })
-      .finally(() => {
-        this.setState({ _id: uniqid() })
-      })
+    })
   }
 
   render () {
