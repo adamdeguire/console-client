@@ -29,11 +29,11 @@ class EditComment extends Component {
 
   onEditComment = (event) => {
     event.preventDefault()
-    const { comment, user, postId, updateComments, toggle } = this.props
+    const { comment, user, logId, updateComments, toggle } = this.props
     const { content } = this.state
     const newComment = { ...comment }
     newComment.content = content
-    updateComment(newComment, user, postId)
+    updateComment(newComment, user, logId)
     updateComments(newComment)
     toggle('showEdit')
   }

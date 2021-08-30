@@ -2,10 +2,10 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createComment = (comment, user, postId) => {
+export const createComment = (comment, user, logId) => {
   return axios({
     method: 'POST',
-    url: apiUrl + `/posts/${postId}/comments/`,
+    url: apiUrl + `/logs/${logId}/comments/`,
     headers: {
       Authorization: `Bearer ${user.token}`
     },
@@ -21,10 +21,10 @@ export const createComment = (comment, user, postId) => {
   })
 }
 
-export const updateComment = (comment, user, postId) => {
+export const updateComment = (comment, user, logId) => {
   return axios({
     method: 'PATCH',
-    url: apiUrl + `/posts/${postId}/comments/`,
+    url: apiUrl + `/logs/${logId}/comments/`,
     headers: {
       Authorization: `Bearer ${user.token}`
     },
@@ -39,10 +39,10 @@ export const updateComment = (comment, user, postId) => {
   })
 }
 
-export const deleteComment = (user, postId, commentId) => {
+export const deleteComment = (user, logId, commentId) => {
   return axios({
     method: 'DELETE',
-    url: apiUrl + `/posts/${postId}/comments/`,
+    url: apiUrl + `/logs/${logId}/comments/`,
     headers: {
       Authorization: `Bearer ${user.token}`
     },

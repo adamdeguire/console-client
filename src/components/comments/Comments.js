@@ -12,17 +12,17 @@ class Comments extends Component {
   }
 
   render () {
-    const { comments, msgAlert, user, postId, postOwner, updateComments } = this.props
+    const { comments, msgAlert, user, logId, logOwner, updateComments } = this.props
     return (
       <div>
         {comments.map((comment) => (
           <div key={comment._id}>
             <Comment
               updateComments={updateComments}
-              postOwner={postOwner}
+              logOwner={logOwner}
               msgAlert={msgAlert}
               comment={comment}
-              postId={postId}
+              logId={logId}
               user={user}
             />
           </div>

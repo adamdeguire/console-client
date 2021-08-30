@@ -2,24 +2,24 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createPost = (post, user) => {
+export const createLog = (log, user) => {
   return axios({
     method: 'POST',
-    url: apiUrl + '/posts/',
+    url: apiUrl + '/logs/',
     headers: {
       Authorization: `Bearer ${user.token}`
     },
     data: {
-      post: {
-        owner: post.owner,
-        title: post.title,
-        content: post.content
+      log: {
+        owner: log.owner,
+        title: log.title,
+        content: log.content
       }
     }
   })
 }
 
-export const indexPosts = (user) => {
+export const indexLogs = (user) => {
   return axios({
     method: 'GET',
     url: apiUrl + '/home/',
@@ -29,37 +29,37 @@ export const indexPosts = (user) => {
   })
 }
 
-export const showPost = (user, postId) => {
+export const showLog = (user, logId) => {
   return axios({
     method: 'GET',
-    url: `${apiUrl}/posts/${postId}`,
+    url: `${apiUrl}/logs/${logId}`,
     headers: {
       Authorization: `Bearer ${user.token}`
     }
   })
 }
 
-export const deletePost = (user, postId) => {
+export const deleteLog = (user, logId) => {
   return axios({
     method: 'DELETE',
-    url: `${apiUrl}/posts/${postId}`,
+    url: `${apiUrl}/logs/${logId}`,
     headers: {
       Authorization: `Bearer ${user.token}`
     }
   })
 }
 
-export const updatePost = (post, user, postId) => {
+export const updateLog = (log, user, logId) => {
   return axios({
     method: 'PATCH',
-    url: `${apiUrl}/posts/${postId}`,
+    url: `${apiUrl}/logs/${logId}`,
     headers: {
       Authorization: `Bearer ${user.token}`
     },
     data: {
-      post: {
-        title: post.title,
-        content: post.content
+      log: {
+        title: log.title,
+        content: log.content
       }
     }
   })

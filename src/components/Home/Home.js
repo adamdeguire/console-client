@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 
-import { indexPosts } from '../../api/posts'
-import { indexPostsFailure } from '../AutoDismissAlert/messages'
+import { indexLogs } from '../../api/logs'
+import { indexLogsFailure } from '../AutoDismissAlert/messages'
 
-import PostContainer from '../posts/PostContainer/PostContainer'
-import CreatePost from '../posts/CreatePost/CreatePost'
+import LogContainer from '../logs/LogContainer/LogContainer'
+import CreateLog from '../logs/CreateLog/CreateLog'
 
 class Home extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      posts: [],
+      logs: [],
       loading: false
     }
   }
@@ -19,38 +19,38 @@ class Home extends Component {
   componentDidMount () {
     const { user, msgAlert } = this.props
 
-    indexPosts(user)
+    indexLogs(user)
       .then(res => this.setState({
-        posts: res.data.posts.reverse()
+        logs: res.data.logs.reverse()
       }))
       .catch(err => {
         msgAlert({
-          heading: 'Couldn\'t Create Post',
-          message: indexPostsFailure + err.message,
+          heading: 'Couldn\'t Create Log',
+          message: indexLogsFailure + err.message,
           variant: 'danger'
         })
       })
   }
 
-  updatePosts = (post) => {
+  updateLogs = (log) => {
     this.setState(prevState => {
-      return { posts: [post, ...prevState.posts] }
+      return { logs: [log, ...prevState.logs] }
     })
   }
 
   render () {
-    const { posts } = this.state
+    const { logs } = this.state
     const { user, msgAlert } = this.props
     return (
       <div>
-        <CreatePost updatePosts={this.updatePosts} msgAlert={msgAlert} user={user} />
-        {posts.map(post => (
-          <div key={post._id}>
-            <PostContainer
+        <CreateLog updateLogs={this.updateLogs} msgAlert={msgAlert} user={user} />
+        {logs.map(log => (
+          <div key={log._id}>
+            <LogContainer
               msgAlert={msgAlert}
               user={user}
-              post={post}
-              comments={post.comments}
+              log={log}
+              comments={log.comments}
             />
           </div>
         ))}

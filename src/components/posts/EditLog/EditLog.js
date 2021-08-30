@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 // API request
-import { updatePost, showPost } from '../../../api/posts'
+import { updateLog, showLog } from '../../../api/logs'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -10,15 +10,15 @@ import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript'
 
-import './EditPost.scss'
+import './EditLog.scss'
 
-class UpdatePost extends Component {
+class UpdateLog extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      // using null as a starting value will help us manage the "loading state" of our UpdatePost component
-      post: { // this should not be null
+      // using null as a starting value will help us manage the "loading state" of our UpdateLog component
+      log: { // this should not be null
         title: '', // must provide starting values for the form inputs
         content: ''
       }
@@ -29,27 +29,27 @@ class UpdatePost extends Component {
     // one of the automatic router props we get is the match object - that has data about the params in our front-end route url
     const { match, user, msgAlert } = this.props
 
-    showPost(user, match.params.id)
-      .then(res => this.setState({ post: res.data.post }))
+    showLog(user, match.params.id)
+      .then(res => this.setState({ log: res.data.log }))
       .then(() => msgAlert({
-        heading: 'Show post success',
-        message: 'Check out the post',
+        heading: 'Show log success',
+        message: 'Check out the log',
         variant: 'success'
       }))
       .catch(err => msgAlert({
-        heading: 'Show post failed :(',
+        heading: 'Show log failed :(',
         message: 'Something went wrong: ' + err.message,
         variant: 'danger'
       }))
   }
 
   handleChange = (event) => {
-    // because `this.state.post` is an object with multiple keys, we have to do some fancy updating
+    // because `this.state.log` is an object with multiple keys, we have to do some fancy updating
     const userInput = { [event.target.name]: event.target.value }
     this.setState(currState => {
-      // "Spread" out current post state key/value pairs, then add the new one at the end
+      // "Spread" out current log state key/value pairs, then add the new one at the end
       // this will override the old key/value pair in the state but leave the others untouched
-      return { post: { ...currState.post, ...userInput } }
+      return { log: { ...currState.log, ...userInput } }
     })
   }
 
@@ -58,12 +58,12 @@ class UpdatePost extends Component {
 
     const { user, msgAlert, history, match } = this.props
 
-    updatePost(this.state.post, user, match.params.id)
-      .then(res => history.push('/posts/' + match.params.id))
-      .then(() => msgAlert({ heading: 'Post Updated!', message: 'Nice work, go check out your post.', variant: 'success' }))
+    updateLog(this.state.log, user, match.params.id)
+      .then(res => history.push('/logs/' + match.params.id))
+      .then(() => msgAlert({ heading: 'Log Updated!', message: 'Nice work, go check out your log.', variant: 'success' }))
       .catch(err => {
         msgAlert({
-          heading: 'Post update failed :(',
+          heading: 'Log update failed :(',
           message: 'Something went wrong: ' + err.message,
           variant: 'danger'
         })
@@ -71,36 +71,36 @@ class UpdatePost extends Component {
   }
 
   render () {
-    const { post } = this.state
+    const { log } = this.state
     const { match } = this.props
 
     return (
       <>
-        <h5 id="updatePostHeader">Edit Post</h5>
-        <div className='postContainer'>
+        <h5 id="updateLogHeader">Edit Log</h5>
+        <div className='logContainer'>
           <Form onSubmit={this.handleSubmit}>
             <Form.Group controlId='title'>
               <Form.Control
                 required
                 className='titleInput'
                 name='title'
-                value={post.title}
-                placeholder='Post Title'
+                value={log.title}
+                placeholder='Log Title'
                 onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group controlId='content'>
               <Editor className="border codeEditor"
-                value={post.content}
+                value={log.content}
                 onValueChange={content => this.setState({ content })}
                 highlight={content => highlight(content, languages.js)}
                 padding={10}
               />
             </Form.Group>
-            <Button id='updatePostButton' variant='primary' type='submit'>Update</Button>
+            <Button id='updateLogButton' variant='primary' type='submit'>Update</Button>
           </Form>
         </div>
-        <Link to={`/posts/${match.params.id}`}>
+        <Link to={`/logs/${match.params.id}`}>
           <Button size='sm' className='btn'>Go back</Button>
         </Link>
       </>
@@ -108,4 +108,4 @@ class UpdatePost extends Component {
   }
 }
 
-export default withRouter(UpdatePost)
+export default withRouter(UpdateLog)

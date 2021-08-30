@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap');
 
-.postContainer {
+.logContainer {
 
   background-color: 	transparent;
   margin: 20px;
@@ -9,12 +9,12 @@
     font-size: 16px;
   }
 
-  & > .post {
+  & > .log {
     margin: 0 10px;
     border-radius: 10px;
     overflow-wrap: break-word;
 
-    & > .postOwner {
+    & > .logOwner {
       font-size: 25px;
       transition: .2s;
       color: white !important;
@@ -29,7 +29,7 @@
     }
   }
 
-  & .postTitle {
+  & .logTitle {
     font-size: 25px;
     color: white;
   }
@@ -48,13 +48,25 @@
   }
 }
 
-.postContent {
+.logContent {
   margin: 5px 10px !important;
   padding: 0 10px;
   font-family: "Fira code", "Fira Mono", monospace;
   color: white;
 }
 
-.code {
-  font-size: 14px;
+@media only screen and (max-width: 600px) {
+  .logTitle, .showComments {
+    font-size: 16px !important;
+  }
+  .logOwner {
+    font-size: 18px !important;
+  }
+  .codeEditor * {
+      font-size: 12px !important;
+  }
+  .navbar-toggler-icon, .navbar-toggler {
+    border: none !important;
+    margin-right: 2.5vw;
+  }
 }

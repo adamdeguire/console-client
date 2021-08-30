@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 
 import CreateComment from '../../comments/CreateComment/CreateComment'
 import Comments from '../../comments/Comments'
-import PostDate from '../../PostDate/PostDate'
+import LogDate from '../../LogDate/LogDate'
 
 import Editor from 'react-simple-code-editor'
 import Button from 'react-bootstrap/Button'
@@ -16,9 +16,9 @@ import 'prismjs/components/prism-markup'
 import 'prismjs/components/prism-css'
 import 'prismjs/themes/prism-dark.css'
 
-import './PostContainer.scss'
+import './LogContainer.scss'
 
-class PostContainer extends Component {
+class LogContainer extends Component {
   constructor (props) {
     super(props)
 
@@ -28,10 +28,10 @@ class PostContainer extends Component {
     }
   }
 
-  goToPost = (e) => {
-    if (!e.target.classList.contains('post')) return
-    const { post, history } = this.props
-    history.push(`/posts/${post._id}`)
+  goToLog = (e) => {
+    if (!e.target.classList.contains('log')) return
+    const { log, history } = this.props
+    history.push(`/logs/${log._id}`)
   }
 
   updateComments = (comment) => {
@@ -56,8 +56,8 @@ class PostContainer extends Component {
   }
 
   componentDidMount () {
-    const { post } = this.props
-    this.setState({ comments: post.comments })
+    const { log } = this.props
+    this.setState({ comments: log.comments })
   }
 
   toggleComments = () => {
@@ -67,7 +67,7 @@ class PostContainer extends Component {
   }
 
   render () {
-    const { msgAlert, user, post } = this.props
+    const { msgAlert, user, log } = this.props
     const { showComments, comments } = this.state
     const s = comments.length === 1 ? '' : 's'
     const commentsJsx = (
@@ -77,7 +77,7 @@ class PostContainer extends Component {
           msgAlert={msgAlert}
           user={user}
           comments={comments}
-          postId={post._id}
+          logId={log._id}
         />
         <CreateComment
           updateComments={this.updateComments}
@@ -85,24 +85,24 @@ class PostContainer extends Component {
           showComments={showComments}
           msgAlert={msgAlert}
           user={user}
-          postId={post._id}
-          postOwner={post.owner._id}
+          logId={log._id}
+          logOwner={log.owner._id}
         />
       </>
     )
     return (
-      <div className="post postContainer" onClick={e => this.goToPost(e)}>
-        <div className="post postTitle">
+      <div className="log logContainer" onClick={e => this.goToLog(e)}>
+        <div className="log logTitle">
           <Link
-            to={`/profile/${post.owner.username}`}
-            className="postOwner">{post.owner.username}
+            to={`/profile/${log.owner.username}`}
+            className="logOwner">{log.owner.username}
           </Link>
-          {post.title}
-          <PostDate createdAt={post.createdAt}/>
+          {log.title}
+          <LogDate createdAt={log.createdAt}/>
         </div>
-        <Editor className="border codeEditor post postContent"
+        <Editor className="border codeEditor log logContent"
           placeholder='// your code here'
-          value={post.content}
+          value={log.content}
           onValueChange={() => null}
           highlight={content => highlight(content, languages.js)}
           padding={10}
@@ -116,4 +116,4 @@ class PostContainer extends Component {
   }
 }
 
-export default withRouter(PostContainer)
+export default withRouter(LogContainer)

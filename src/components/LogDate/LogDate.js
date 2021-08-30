@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import './PostDate.scss'
+import './LogDate.scss'
 
-class PostDate extends Component {
+class LogDate extends Component {
   constructor (props) {
     super(props)
 
@@ -61,4 +61,4 @@ class PostDate extends Component {
   }
 }
 
-export default withRouter(PostDate)
+export default withRouter(LogDate)

@@ -12,17 +12,17 @@ export const changePasswordSuccess = 'Password changed successfully!'
 export const changePasswordFailure =
 	'Failed to change passwords. Check your old password and try again.'
 
-// POSTS
-export const createPostSuccess = 'Your post has successfully been created.'
-export const createPostFailure =
-	'Failed to create post, please double check your input and try again. Error: '
-export const indexPostsFailure =
-	'Couldn\'t find posts, please refresh the page and try again. Error: '
-export const showPostFailure =
-	'Couldn\'t find this post. Please refresh the page and try again. Error: '
-export const deletePostSuccess = 'Your post has successfully been deleted.'
-export const deletePostFailure =
-	'Something went wrong while deleting this post, please refresh and try again. Error: '
+// LOGS
+export const createLogSuccess = 'Your log has successfully been created.'
+export const createLogFailure =
+	'Failed to create log, please double check your input and try again. Error: '
+export const indexLogsFailure =
+	'Couldn\'t find logs, please refresh the page and try again. Error: '
+export const showLogFailure =
+	'Couldn\'t find this log. Please refresh the page and try again. Error: '
+export const deleteLogSuccess = 'Your log has successfully been deleted.'
+export const deleteLogFailure =
+	'Something went wrong while deleting this log, please refresh and try again. Error: '
 
 // COMMENTS
 export const createCommentSuccess = 'Your comment has successfully been created.'

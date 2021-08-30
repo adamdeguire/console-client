@@ -11,9 +11,9 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import EditPost from './components/posts/EditPost/EditPost'
+import EditLog from './components/logs/EditLog/EditLog'
 import Home from './components/Home/Home'
-import Post from './components/posts/Post'
+import Log from './components/logs/Log'
 import Profile from './components/Profile/Profile'
 
 class App extends Component {
@@ -103,8 +103,8 @@ class App extends Component {
 	        <AuthenticatedRoute
 	          user={user}
 					  exact
-	          path='/posts/:id/edit'
-	          render={() => <EditPost msgAlert={this.msgAlert} user={user} />}
+	          path='/logs/:id/edit'
+	          render={() => <EditLog msgAlert={this.msgAlert} user={user} />}
 	        />
 	        <AuthenticatedRoute
 	          user={user}
@@ -115,8 +115,8 @@ class App extends Component {
 	        <AuthenticatedRoute
 	          user={user}
 	          exact
-	          path='/posts/:id'
-	          render={() => <Post msgAlert={this.msgAlert} user={user} />}
+	          path='/logs/:id'
+	          render={() => <Log msgAlert={this.msgAlert} user={user} />}
 	        />
 	        <AuthenticatedRoute
 	          user={user}

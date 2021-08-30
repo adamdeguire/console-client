@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { getProfile } from '../../api/profile'
-import { indexPostsFailure } from '../AutoDismissAlert/messages'
+import { indexLogsFailure } from '../AutoDismissAlert/messages'
 
-import PostContainer from '../posts/PostContainer/PostContainer'
-import CreatePost from '../posts/CreatePost/CreatePost'
+import LogContainer from '../logs/LogContainer/LogContainer'
+import CreateLog from '../logs/CreateLog/CreateLog'
 
 class Profile extends Component {
   constructor (props) {
@@ -14,7 +14,7 @@ class Profile extends Component {
     this._isMounted = false
 
     this.state = {
-      posts: [],
+      logs: [],
       path: ''
     }
   }
@@ -42,36 +42,36 @@ class Profile extends Component {
     if (this._isMounted) {
       const { user, msgAlert } = this.props
       getProfile(user, path)
-        .then(res => this.setState({ posts: res.data.posts }))
+        .then(res => this.setState({ logs: res.data.logs }))
         .catch(err => {
           msgAlert({
-            heading: 'Couldn\'t Create Post',
-            message: indexPostsFailure + err.message,
+            heading: 'Couldn\'t Create Log',
+            message: indexLogsFailure + err.message,
             variant: 'danger'
           })
         })
     }
   }
 
-  updatePosts = (post) => {
+  updateLogs = (log) => {
     this.setState(prevState => {
-      return { posts: [post, ...prevState.posts] }
+      return { logs: [log, ...prevState.logs] }
     })
   }
 
   render () {
-    const { posts } = this.state
+    const { logs } = this.state
     const { user, msgAlert } = this.props
     return (
       <div>
-        <CreatePost updatePosts={this.updatePosts} msgAlert={msgAlert} user={user} />
-        {posts.map(post => (
-          <div key={post._id}>
-            <PostContainer
+        <CreateLog updateLogs={this.updateLogs} msgAlert={msgAlert} user={user} />
+        {logs.map(log => (
+          <div key={log._id}>
+            <LogContainer
               msgAlert={msgAlert}
               user={user}
-              post={post}
-              comments={post.comments}
+              log={log}
+              comments={log.comments}
             />
           </div>
         ))}

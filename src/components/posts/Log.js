@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 
-import { deletePost, showPost } from '../../api/posts'
-import { showPostFailure, deletePostSuccess, deletePostFailure } from '../AutoDismissAlert/messages'
+import { deleteLog, showLog } from '../../api/logs'
+import { showLogFailure, deleteLogSuccess, deleteLogFailure } from '../AutoDismissAlert/messages'
 
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
-import PostContainer from './PostContainer/PostContainer'
+import LogContainer from './LogContainer/LogContainer'
 
-class Post extends Component {
+class Log extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      post: null,
+      log: null,
       deleted: false
     }
   }
@@ -21,12 +21,12 @@ class Post extends Component {
   componentDidMount () {
     const { user, match, msgAlert } = this.props
 
-    showPost(user, match.params.id)
-      .then(res => this.setState({ post: res.data.post }))
+    showLog(user, match.params.id)
+      .then(res => this.setState({ log: res.data.log }))
       .catch(err => {
         msgAlert({
-          heading: 'Couldn\'t Create Post',
-          message: showPostFailure + err.message,
+          heading: 'Couldn\'t Create Log',
+          message: showLogFailure + err.message,
           variant: 'danger'
         })
       })
@@ -34,38 +34,38 @@ class Post extends Component {
 
   destroy = () => {
     const { user, match, msgAlert } = this.props
-    deletePost(user, match.params.id)
+    deleteLog(user, match.params.id)
       .then(() => {
         msgAlert({
-          heading: 'Post Deleted',
-          message: deletePostSuccess,
+          heading: 'Log Deleted',
+          message: deleteLogSuccess,
           variant: 'success'
         })
       })
       .then(() => this.setState({ deleted: true }))
       .catch(err => {
         msgAlert({
-          heading: 'Couldn\'t Delete Post',
-          message: deletePostFailure + err.message,
+          heading: 'Couldn\'t Delete Log',
+          message: deleteLogFailure + err.message,
           variant: 'danger'
         })
       })
   }
 
   render () {
-    const { post, deleted } = this.state
+    const { log, deleted } = this.state
     const { user, msgAlert } = this.props
 
     const modifyButtonsJsx = (
       <>
-        <Link to={`/posts/${this.props.match.params.id}/edit`}>
+        <Link to={`/logs/${this.props.match.params.id}/edit`}>
           <Button size='sm' variant='primary'>Edit</Button>
         </Link>
-        <Button size='sm' variant='danger' onClick={this.destroy}>Delete post</Button>
+        <Button size='sm' variant='danger' onClick={this.destroy}>Delete log</Button>
       </>
     )
 
-    if (!post) {
+    if (!log) {
       return (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -81,19 +81,19 @@ class Post extends Component {
 
     return (
       <>
-        <PostContainer
+        <LogContainer
           msgAlert={msgAlert}
           user={user}
-          post={post}
-          comments={post.comments}
+          log={log}
+          comments={log.comments}
         />
         <Link to="/home">
           <Button size='sm' className='btn'>Go back</Button>
         </Link>
-        {post.owner._id === user._id ? modifyButtonsJsx : ''}
+        {log.owner._id === user._id ? modifyButtonsJsx : ''}
       </>
     )
   }
 }
 
-export default withRouter(Post)
+export default withRouter(Log)

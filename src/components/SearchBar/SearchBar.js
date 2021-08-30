@@ -11,7 +11,11 @@ class SearchBar extends Component {
     users: null,
     loading: false,
     value: ''
-  };
+  }
+
+  componentDidMount () {
+    document.addEventListener('mousedown', this.onBlurHandler)
+  }
 
   search = async val => {
     this.setState({ loading: true })
@@ -26,13 +30,19 @@ class SearchBar extends Component {
     this.setState({ value: e.target.value })
   }
 
+  onBlurHandler = e => {
+    if (!e.target.classList.contains('search')) {
+      this.setState({ value: '' })
+    }
+  }
+
   get renderUsers () {
     let users = ''
     if (this.state.users) {
       users = this.state.users.map(user => {
         return (
-          <div className='result' key={user._id}>
-            <Link className='resultLink' to={`/posts?user=${user._id}`} >{user.username}</Link>
+          <div className='search result' key={user._id}>
+            <Link className='search resultLink' to={`/profile/${user.username}`} >{user.username}</Link>
           </div>
         )
       })
@@ -50,13 +60,13 @@ class SearchBar extends Component {
     const noResultsJsx = (<div className="result">No results</div>)
     return (
       <>
-        <div className="searchBar">
-          <input className="searchInput"
+        <div className="search searchBar">
+          <input className="search searchInput"
             value={value}
             onChange={e => this.onChangeHandler(e)}
             placeholder="Search Users"
           />
-          <div className="resultContainer">
+          <div className="search resultContainer">
             {noResults ? noResultsJsx : this.renderUsers}
           </div>
         </div>

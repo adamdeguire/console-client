@@ -4,7 +4,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom'
 
 import EditComment from '../EditComment'
 import { deleteComment } from '../../../api/comments'
-import PostDate from '../../PostDate/PostDate'
+import LogDate from '../../LogDate/LogDate'
 
 import Button from 'react-bootstrap/Button'
 import './Comment.scss'
@@ -27,8 +27,8 @@ class Comment extends Component {
 
   onDestroyComment = (event) => {
     event.preventDefault()
-    const { comment, user, postId, updateComments } = this.props
-    deleteComment(user, postId, comment._id)
+    const { comment, user, logId, updateComments } = this.props
+    deleteComment(user, logId, comment._id)
     updateComments(comment._id)
   }
 
@@ -36,7 +36,7 @@ class Comment extends Component {
 
   render () {
     const { deleted, showEdit, showButtons } = this.state
-    const { comment, user, msgAlert, postId, updateComments } = this.props
+    const { comment, user, msgAlert, logId, updateComments } = this.props
     const renderButtons = (comment.owner === user._id && showButtons && !showEdit)
 
     const modifyButtonsJsx = (
@@ -65,7 +65,7 @@ class Comment extends Component {
           updateComments={updateComments}
           msgAlert={msgAlert}
           comment={comment}
-          postId={postId}
+          logId={logId}
           user={user}
         />
         <Button size='sm' variant='danger' onClick={() => this.toggle('showEdit')}>Cancel</Button>
@@ -87,7 +87,7 @@ class Comment extends Component {
               className="commentOwner">{comment.ownerName}
             </Link>
             {showEdit ? editCommentJsx : comment.content}
-            <PostDate createdAt={comment.createdAt}/>
+            <LogDate createdAt={comment.createdAt}/>
             {renderButtons ? modifyButtonsJsx : ''}
           </div>
         </div>

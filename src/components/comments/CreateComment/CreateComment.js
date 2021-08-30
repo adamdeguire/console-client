@@ -33,10 +33,10 @@ class CreateComment extends Component {
     event.preventDefault()
     const timestamp = Date.now()
     this.setState({ createdAt: timestamp }, () => {
-      const { msgAlert, user, postId, updateComments, showComments, toggleComments } = this.props
+      const { msgAlert, user, logId, updateComments, showComments, toggleComments } = this.props
       const { content, _id, timestamp } = this.state
 
-      createComment(this.state, user, postId)
+      createComment(this.state, user, logId)
         .then(() =>
           updateComments({
             ownerName: user.username,
