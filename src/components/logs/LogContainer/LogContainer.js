@@ -29,7 +29,7 @@ class LogContainer extends Component {
   }
 
   goToLog = (e) => {
-    if (!e.target.classList.contains('log')) return
+    if (!e.target.classList.contains('showLog')) return
     const { log, history } = this.props
     history.push(`/logs/${log._id}`)
   }
@@ -58,21 +58,28 @@ class LogContainer extends Component {
   componentDidMount () {
     const { log } = this.props
     this.setState({ comments: log.comments })
+    document.addEventListener('mousedown', e => this.handleCommentBlur(e))
   }
 
-  toggleComments = () => {
-    this.setState(prevState => {
-      return { showComments: !prevState.showComments }
-    })
+  handleCommentBlur = (e) => {
+    if (!e.target.classList.contains('log')) {
+      this.setState({ showComments: false })
+    }
   }
 
   render () {
     const { msgAlert, user, log } = this.props
     const { showComments, comments } = this.state
     const s = comments.length === 1 ? '' : 's'
+    const commentsButton = (
+      <Button className="log showComments" size='sm' variant='outline-primary' onClick={() => this.setState({ showComments: true })}>
+        {`${comments.length} Comment${s}`}
+      </Button>
+    )
     const commentsJsx = (
       <>
         <Comments
+          className="log"
           updateComments={this.updateComments}
           msgAlert={msgAlert}
           user={user}
@@ -80,8 +87,8 @@ class LogContainer extends Component {
           logId={log._id}
         />
         <CreateComment
+          className="log"
           updateComments={this.updateComments}
-          toggleComments={this.toggleComments}
           showComments={showComments}
           msgAlert={msgAlert}
           user={user}
@@ -91,26 +98,23 @@ class LogContainer extends Component {
       </>
     )
     return (
-      <div className="log logContainer" onClick={e => this.goToLog(e)}>
-        <div className="log logTitle">
+      <div className="log showLog logContainer" onClick={e => this.goToLog(e)}>
+        <div className="log showLog logTitle">
           <Link
             to={`/profile/${log.owner.username}`}
-            className="logOwner">{log.owner.username}
+            className="log logOwner">{log.owner.username}
           </Link>
           {log.title}
           <LogDate createdAt={log.createdAt}/>
         </div>
-        <Editor className="border codeEditor log logContent"
+        <Editor className="log border codeEditor logContent"
           placeholder='// your code here'
           value={log.content}
           onValueChange={() => null}
           highlight={content => highlight(content, languages.js)}
           padding={10}
         />
-        <Button className="showComments" size='sm' variant='outline-primary' onClick={this.toggleComments}>
-          {showComments ? 'Hide Comments' : `${comments.length} Comment${s}`}
-        </Button>
-        {showComments ? commentsJsx : ''}
+        {showComments ? commentsJsx : commentsButton}
       </div>
     )
   }

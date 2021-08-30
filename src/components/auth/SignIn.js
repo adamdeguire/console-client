@@ -7,6 +7,8 @@ import { signInSuccess, signInFailure } from '../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+import './auth.scss'
+
 class SignIn extends Component {
   constructor (props) {
     super(props)
@@ -90,7 +92,7 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>Submit</Button>
+          <Button className="authButton" variant='primary' type='submit'>Submit</Button>
           <Form.Check
             type='checkbox'
             id='default-checkbox'

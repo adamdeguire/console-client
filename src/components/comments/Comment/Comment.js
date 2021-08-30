@@ -44,14 +44,14 @@ class Comment extends Component {
         <Button
           size='sm'
           variant='secondary'
-          className="commentButton"
+          className="log commentButton edit"
           onClick={() => this.toggle('showEdit')}>
           Edit
         </Button>
         <Button
           size='sm'
           variant='danger'
-          className="commentButton"
+          className="log commentButton delete"
           onClick={this.onDestroyComment}>
           Delete
         </Button>
@@ -61,6 +61,7 @@ class Comment extends Component {
     const editCommentJsx = (
       <>
         <EditComment
+          className="log"
           toggle={this.toggle}
           updateComments={updateComments}
           msgAlert={msgAlert}
@@ -68,7 +69,13 @@ class Comment extends Component {
           logId={logId}
           user={user}
         />
-        <Button size='sm' variant='danger' onClick={() => this.toggle('showEdit')}>Cancel</Button>
+        <Button
+          className="log"
+          size='sm'
+          variant='danger'
+          onClick={() => this.toggle('showEdit')}>
+            Cancel
+        </Button>
       </>
     )
 
@@ -81,10 +88,10 @@ class Comment extends Component {
     return (
       <>
         <div onClick={() => this.toggle('showButtons')}>
-          <div className="comment">
+          <div className="log comment">
             <Link
               to={`/profile/${comment.ownerName}`}
-              className="commentOwner">{comment.ownerName}
+              className="log commentOwner">{comment.ownerName}
             </Link>
             {showEdit ? editCommentJsx : comment.content}
             <LogDate createdAt={comment.createdAt}/>

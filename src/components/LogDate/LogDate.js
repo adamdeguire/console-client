@@ -54,7 +54,7 @@ class LogDate extends Component {
 
   render () {
     return (
-      <div className="date">
+      <div className="log date">
         {this.state.dateText}
       </div>
     )

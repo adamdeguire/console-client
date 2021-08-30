@@ -7,6 +7,8 @@ import { changePasswordSuccess, changePasswordFailure } from '../AutoDismissAler
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+import './auth.scss'
+
 class ChangePassword extends Component {
   constructor (props) {
     super(props)
@@ -57,6 +59,7 @@ render () {
           <Form.Group controlId='oldPassword'>
             <Form.Label>Old password</Form.Label>
             <Form.Control
+              className='input'
               required
               name='oldPassword'
               value={oldPassword}
@@ -68,6 +71,7 @@ render () {
           <Form.Group controlId='newPassword'>
             <Form.Label>New Password</Form.Label>
             <Form.Control
+              className='input'
               required
               name='newPassword'
               value={newPassword}
@@ -76,7 +80,7 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>Submit</Button>
+          <Button className="authButton" variant='primary' type='submit'>Submit</Button>
         </Form>
       </div>
     </div>

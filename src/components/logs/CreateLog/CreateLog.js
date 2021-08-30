@@ -6,6 +6,7 @@ import { createLogSuccess, createLogFailure } from '../../AutoDismissAlert/messa
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 import Editor from 'react-simple-code-editor'
 import { highlight, languages } from 'prismjs/components/prism-core'
@@ -26,6 +27,8 @@ class CreateLog extends Component {
     this.state = {
       title: '',
       content: '',
+      language: 'javascript',
+      buttonValue: 'Language',
       logId: null,
       showCreate: false
     }
@@ -72,12 +75,24 @@ class CreateLog extends Component {
   }
 
   render () {
-    const { title, showCreate } = this.state
+    const { title, buttonValue, showCreate } = this.state
 
     return showCreate
       ? (
         <>
-          <h5 id="createLogHeader">Create Log</h5>
+          <div>
+            <h5 id="createLogHeader">Create Log</h5>
+            <Dropdown className="languages">
+              <Dropdown.Toggle className="languages">
+                {buttonValue}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => this.setState({ language: 'javascript', buttonValue: 'JavaScript' })} href="#/javascript">JavaScript</Dropdown.Item>
+                <Dropdown.Item onClick={() => this.setState({ language: 'python', buttonValue: 'Python' })} href="#/python">Python</Dropdown.Item>
+                <Dropdown.Item onClick={() => this.setState({ language: 'clike', buttonValue: 'C/C++/C#' })} href="#/">C/C++/C#</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
           <div className='logContainer'>
             <Form onSubmit={this.onCreateLog}>
               <Form.Group controlId='title'>

@@ -66,12 +66,12 @@ class CreateComment extends Component {
 
     return (
       <>
-        <Form onSubmit={this.onCreateComment}>
+        <Form className="log" onSubmit={this.onCreateComment}>
           <Form.Group>
             <Form.Control
               required
               autoComplete="off"
-              className="commentInput"
+              className="log commentInput"
               name='content'
               value={content}
               placeholder='Add Comment'

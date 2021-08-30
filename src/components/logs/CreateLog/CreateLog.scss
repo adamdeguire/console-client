@@ -5,6 +5,10 @@
   border-radius: 10px;
   font-family: "Fira code", "Fira Mono", monospace;
 
+  & * {
+    animation: none !important;
+  }
+
   & > *::placeholder {
     color: rgba(255,255,255,.8);
   }
@@ -28,8 +32,16 @@
 }
 
 #createLogHeader {
+  display: inline;
   color: white;
-  margin: 10px 0 -15px 30px;
+  margin: 10px 100px -15px 30px;
+}
+
+.languages {
+  width: fit-content;
+  display: inline;
+  background-color: transparent;
+  border: none;
 }
 
 .logButton {
@@ -37,4 +49,8 @@
   border-radius: 10px;
   margin: 10px;
   border: 0;
+
+  &:hover {
+    background-color: rgba(0,0,0,.7);
+  }
 }
