@@ -7,7 +7,7 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <Fragment>
-    <NavLink exact to='/home' className='nav-link'>Home</NavLink>
+    <SearchBar />
     <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
   </Fragment>
@@ -31,7 +31,6 @@ const Header = ({ user }) => (
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>
-    <SearchBar />
   </Navbar>
 )
 

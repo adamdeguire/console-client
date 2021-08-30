@@ -24,3 +24,9 @@
   text-shadow: .5px 0 white;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  #headerTitle {
+    font-size: 40px;
+  }
+}

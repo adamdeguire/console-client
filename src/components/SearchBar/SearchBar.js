@@ -56,9 +56,9 @@ class SearchBar extends Component {
             onChange={e => this.onChangeHandler(e)}
             placeholder="Search Users"
           />
-        </div>
-        <div className="resultContainer">
-          {noResults ? noResultsJsx : this.renderUsers}
+          <div className="resultContainer">
+            {noResults ? noResultsJsx : this.renderUsers}
+          </div>
         </div>
       </>
     )
