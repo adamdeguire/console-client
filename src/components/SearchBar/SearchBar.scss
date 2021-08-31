@@ -4,12 +4,15 @@
 
 .searchBar {
   width: 300px;
-  z-index: 999;
+  z-index: 998;
 }
 
 .searchInput {
+  margin-top: 35px;
+  z-index: 999;
   color: white;
   width: 300px;
+  height: 45px;
   outline: none;
   background-color: 	rgba(0,0,0,.5);
   border-color: transparent;
@@ -21,22 +24,25 @@
 }
 
 .resultContainer {
-  z-index: 998;
-  background-color: 	rgba(0,0,0,.3);
+  z-index: 997;
   border-top: unset;
   border-radius: 10px;
   position: absolute;
-  top: var(--top);
+  top: calc(var(--top) + 19px);
   height: auto;
   width: 300px;
 }
 
 .result {
-  z-index: 999;
-  margin: 10px;
+  margin-left: 15px;
+  z-index: 990;
+  line-height: 45px;
+  width: 300px;
+  border-radius: 10px;
 }
 
 .resultLink {
+  top: 45px;
   transition: .2s;
   color: white !important;
   font-weight: 500;
@@ -55,8 +61,9 @@
   }
 
   .resultContainer {
-    top: calc(var(--top) + 14px);
+    top: calc(var(--top) + 20px);
     background-color: 	rgba(0,0,0,.7);
+    backdrop-filter: blur(5px)
   }
 
 }

@@ -1,6 +1,29 @@
 #header {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -15px;
   background-color: transparent;
   border-radius: 0 0 25px 25px;
+}
+
+.dropdown {
+  text-align: right;
+  margin-right: 50px;
+  width: 250px;
+}
+
+div.dropdown-menu.show {
+  text-align: right;
+  background-color: transparent;
+  border: none;
+}
+a.dropdown-item {
+  line-height: 45px !important;
+  color: #ffffff
+}
+
+.spacing {
+  width: fill;
 }
 
 #headerTitle {
@@ -15,6 +38,7 @@
 }
 
 .nav-link {
+  margin-top: 25px;
   color: white !important;
   font-weight: 500;
   font-size: x-large;
@@ -26,10 +50,18 @@
 }
 
 @media only screen and (max-width: 600px) {
+  #header {
+    line-height: unset;
+    margin-top: unset;
+  }
   #headerTitle {
-    font-size: 40px;
+    font-size: 45px;
   }
   .nav-link {
+    line-height: unset;
     margin: 0 6vw;
+  }
+  .dropdown {
+    margin-left: unset;
   }
 }

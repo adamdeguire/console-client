@@ -20,6 +20,8 @@ import 'prismjs/themes/prism-dark.css'
 import './CreateLog.scss'
 import '../LogContainer/LogContainer.scss'
 
+import languageOptions from './languageOptions'
+
 class CreateLog extends Component {
   constructor (props) {
     super(props)
@@ -29,6 +31,8 @@ class CreateLog extends Component {
       content: '',
       language: 'javascript',
       buttonValue: 'Language',
+      placeholder: '// your code here',
+      height: '110px',
       logId: null,
       showCreate: false
     }
@@ -87,9 +91,17 @@ class CreateLog extends Component {
                 {buttonValue}
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => this.setState({ language: 'javascript', buttonValue: 'JavaScript' })} href="#/javascript">JavaScript</Dropdown.Item>
-                <Dropdown.Item onClick={() => this.setState({ language: 'python', buttonValue: 'Python' })} href="#/python">Python</Dropdown.Item>
-                <Dropdown.Item onClick={() => this.setState({ language: 'clike', buttonValue: 'C/C++/C#' })} href="#/">C/C++/C#</Dropdown.Item>
+                {languageOptions.map((option, index) => (
+                  <Dropdown.Item key={index}
+                    onClick={() => this.setState({
+                      language: option.language,
+                      buttonValue: option.buttonValue,
+                      placeholder: option.placeholder,
+                      height: option.height
+                    })} href="#/javascript">
+                    {option.buttonValue}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -108,7 +120,8 @@ class CreateLog extends Component {
               </Form.Group>
               <Form.Group controlId='content'>
                 <Editor className="border codeEditor"
-                  placeholder='// your code here'
+                  style={{ minHeight: this.state.height }}
+                  placeholder={this.state.placeholder}
                   value={this.state.content}
                   onValueChange={content => this.setState({ content })}
                   highlight={content => highlight(content, languages.js)}

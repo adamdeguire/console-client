@@ -13,7 +13,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import EditLog from './components/logs/EditLog/EditLog'
 import Home from './components/Home/Home'
-import Log from './components/logs/Log'
+import Log from './components/logs/Log/Log'
 import Profile from './components/Profile/Profile'
 
 class App extends Component {
@@ -21,6 +21,7 @@ class App extends Component {
     super(props)
     this.state = {
       user: null,
+      deviceSize: null,
       msgAlerts: []
     }
   }
@@ -48,17 +49,22 @@ class App extends Component {
 	  const { history } = this.props
 	  const user = JSON.parse(window.localStorage.getItem('user'))
 	  if (window) {
+	    window.addEventListener('resize', this.getDeviceSize)
 	    this.setUser(user)
 	    history.push('/home')
 	  }
 	}
 
+	getDeviceSize = () => {
+	  this.setState({ deviceSize: document.body.clientWidth })
+	}
+
 	render () {
-	  const { msgAlerts, user } = this.state
+	  const { msgAlerts, user, deviceSize } = this.state
 
 	  return (
 	    <>
-	      <Header user={user} />
+	      <Header deviceSize={deviceSize} user={user} />
 	      {msgAlerts.map((msgAlert) => (
 	        <AutoDismissAlert
 	          key={msgAlert.id}

@@ -13,7 +13,8 @@ export const createLog = (log, user) => {
       log: {
         owner: log.owner,
         title: log.title,
-        content: log.content
+        content: log.content,
+        language: log.buttonValue
       }
     }
   })

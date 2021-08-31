@@ -1,12 +1,5 @@
 .date {
   display: inline;
   margin-left: 10px;
-  font-size: 18px !important;
   color: rgba(255,255,255,.5)
-}
-
-@media only screen and (max-width: 600px) {
-  .date {
-    font-size: 14px !important;
-  }
 }

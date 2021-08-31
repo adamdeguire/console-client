@@ -105,6 +105,7 @@ class LogContainer extends Component {
             className="log logOwner">{log.owner.username}
           </Link>
           {log.title}
+          <Link className="languageLink">{ log.language ? `{ ${log.language} }` : ''}</Link>
           <LogDate createdAt={log.createdAt}/>
         </div>
         <Editor className="log border codeEditor logContent"

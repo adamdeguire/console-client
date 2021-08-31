@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link, Redirect, withRouter } from 'react-router-dom'
 
-import { deleteLog, showLog } from '../../api/logs'
-import { showLogFailure, deleteLogSuccess, deleteLogFailure } from '../AutoDismissAlert/messages'
+import { deleteLog, showLog } from '../../../api/logs'
+import { showLogFailure, deleteLogSuccess, deleteLogFailure } from '../../AutoDismissAlert/messages'
 
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
-import LogContainer from './LogContainer/LogContainer'
+import LogContainer from '../LogContainer/LogContainer'
 
 class Log extends Component {
   constructor (props) {
