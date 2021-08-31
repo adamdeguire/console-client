@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/console-client/static/css/main.8b402775.chunk.css",
-    "main.js": "/console-client/static/js/main.bddc7af3.chunk.js",
-    "main.js.map": "/console-client/static/js/main.bddc7af3.chunk.js.map",
+    "main.css": "/console-client/static/css/main.3825ce47.chunk.css",
+    "main.js": "/console-client/static/js/main.792f119b.chunk.js",
+    "main.js.map": "/console-client/static/js/main.792f119b.chunk.js.map",
     "runtime-main.js": "/console-client/static/js/runtime-main.31dafd96.js",
     "runtime-main.js.map": "/console-client/static/js/runtime-main.31dafd96.js.map",
     "static/css/2.0670e618.chunk.css": "/console-client/static/css/2.0670e618.chunk.css",
-    "static/js/2.7db0c6e4.chunk.js": "/console-client/static/js/2.7db0c6e4.chunk.js",
-    "static/js/2.7db0c6e4.chunk.js.map": "/console-client/static/js/2.7db0c6e4.chunk.js.map",
+    "static/js/2.a2e4bc61.chunk.js": "/console-client/static/js/2.a2e4bc61.chunk.js",
+    "static/js/2.a2e4bc61.chunk.js.map": "/console-client/static/js/2.a2e4bc61.chunk.js.map",
     "index.html": "/console-client/index.html",
     "static/css/2.0670e618.chunk.css.map": "/console-client/static/css/2.0670e618.chunk.css.map",
-    "static/css/main.8b402775.chunk.css.map": "/console-client/static/css/main.8b402775.chunk.css.map",
-    "static/js/2.7db0c6e4.chunk.js.LICENSE.txt": "/console-client/static/js/2.7db0c6e4.chunk.js.LICENSE.txt"
+    "static/css/main.3825ce47.chunk.css.map": "/console-client/static/css/main.3825ce47.chunk.css.map",
+    "static/js/2.a2e4bc61.chunk.js.LICENSE.txt": "/console-client/static/js/2.a2e4bc61.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.31dafd96.js",
     "static/css/2.0670e618.chunk.css",
-    "static/js/2.7db0c6e4.chunk.js",
-    "static/css/main.8b402775.chunk.css",
-    "static/js/main.bddc7af3.chunk.js"
+    "static/js/2.a2e4bc61.chunk.js",
+    "static/css/main.3825ce47.chunk.css",
+    "static/js/main.792f119b.chunk.js"
   ]
 }
