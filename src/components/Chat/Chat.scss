@@ -1,0 +1,63 @@
+.accordion, .accordion * {
+  animation: unset !important;
+  color: white !important;
+  float: right;
+  width: 350px;
+  background-color: transparent;
+}
+
+.accordion-button {
+  padding: 10px;
+}
+
+.accordion-body {
+  max-height: 800px;
+  background-color: rgba(0,0,0,.3);
+  padding: 0;
+}
+
+.accordion-button {
+  background-color: rgba(0,0,0,.3) !important;
+
+  &::after {
+    filter: brightness(0) invert(1);
+  }
+}
+
+.accordion-button:not(.collapsed)::after{
+  transform: rotate(0deg);
+}
+
+.accordion-button.collapsed::after{
+  transform: rotate(180deg);
+}
+
+.content {
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 10px;
+  width: fit-content;
+  display: inline;
+  background-color: rgba(0,0,0,.3);
+}
+
+.message {
+  padding: 10px 15px;
+  width: stretch;
+}
+
+.sent {
+  float: right;
+  border-bottom-right-radius: unset;
+}
+.received {
+  float: left;
+  border-bottom-left-radius: unset;
+}
+
+.btn-close {
+  background-size: 20px;
+  position: absolute;
+  right: 50px;
+  width: 25px;
+}

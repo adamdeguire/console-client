@@ -61,6 +61,10 @@ class LogContainer extends Component {
     document.addEventListener('mousedown', e => this.handleCommentBlur(e))
   }
 
+  componentWillUnmount () {
+    document.removeEventListener('mousedown', e => this.handleCommentBlur(e))
+  }
+
   handleCommentBlur = (e) => {
     if (!e.target.classList.contains('log')) {
       this.setState({ showComments: false })
@@ -102,10 +106,15 @@ class LogContainer extends Component {
         <div className="log showLog logTitle">
           <Link
             to={`/profile/${log.owner.username}`}
-            className="log logOwner">{log.owner.username}
+            className="log logOwner">
+            {log.owner.username}
           </Link>
           {log.title}
-          <Link className="languageLink">{ log.language ? `{ ${log.language} }` : ''}</Link>
+          <Link
+            to={`/home?language=${log.language}`}
+            className="languageLink">
+            { log.language ? `{ ${log.language} }` : ''}
+          </Link>
           <LogDate createdAt={log.createdAt}/>
         </div>
         <Editor className="log border codeEditor logContent"

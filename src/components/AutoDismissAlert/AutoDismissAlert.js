@@ -13,7 +13,7 @@ class AutoDismissAlert extends React.Component {
   }
 
   componentDidMount () {
-    this.timeoutId = setTimeout(this.handleClose, 5000)
+    this.timeoutId = setTimeout(this.handleClose, 3000)
   }
 
   componentWillUnmount () {
@@ -23,7 +23,7 @@ class AutoDismissAlert extends React.Component {
 handleClose = () => this.setState({ show: false })
 
 render () {
-  const { variant, heading, message, deleteAlert, id } = this.props
+  const { heading, message, deleteAlert, id } = this.props
 
   // Delete this alert after the fade animation time (300 ms by default)
   if (!this.state.show) {
@@ -36,7 +36,6 @@ render () {
     <Alert
       dismissible
       show={this.state.show}
-      variant={variant}
       onClose={this.handleClose}>
       <div className='container'>
         <Alert.Heading>{heading}</Alert.Heading>

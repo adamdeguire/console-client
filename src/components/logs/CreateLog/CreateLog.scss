@@ -11,8 +11,12 @@
 
   & > *::placeholder {
     color: rgba(255,255,255,.8);
-  }
-  
+  } 
+}
+
+.spacing {
+  display: inline;
+  width: stretch;
 }
 
 .titleInput {
@@ -38,6 +42,7 @@
 }
 
 .languages {
+  float:inherit;
   margin-bottom: 10px;
   width: fit-content;
   display: inline;
@@ -45,7 +50,16 @@
   border: none;
 
   & * {
+    margin-right: 50px;
+    width: inherit;
+    float: right;
+    text-align: right !important;
     animation: none !important;
+  }
+
+  & div.dropdown-menu.show {
+    background-color: rgba(0,0,0,.7);
+    backdrop-filter: blur(5px)
   }
 }
 

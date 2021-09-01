@@ -22,20 +22,22 @@ import '../LogContainer/LogContainer.scss'
 
 import languageOptions from './languageOptions'
 
+const initialState = {
+  title: '',
+  content: '',
+  language: 'javascript',
+  buttonValue: 'Language',
+  placeholder: '// your code here',
+  height: '110px',
+  logId: null,
+  showCreate: false
+}
+
 class CreateLog extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      title: '',
-      content: '',
-      language: 'javascript',
-      buttonValue: 'Language',
-      placeholder: '// your code here',
-      height: '110px',
-      logId: null,
-      showCreate: false
-    }
+    this.state = initialState
   }
 
   handleChange = (event) =>
@@ -128,8 +130,18 @@ class CreateLog extends Component {
                   padding={10}
                 />
               </Form.Group>
-              <Button className="logButton" onClick={() => this.setState({ showCreate: false })}>Cancel</Button>
-              <Button className="logButton" id='createLogButton' variant='primary' type='submit'>Create</Button>
+              <Button
+                className="logButton"
+                onClick={() => this.setState(initialState)}>
+                  Cancel
+              </Button>
+              <Button
+                className="logButton"
+                id='createLogButton'
+                variant='primary'
+                type='submit'>
+                  Create
+              </Button>
             </Form>
           </div>
         </>
