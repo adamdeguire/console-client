@@ -1,19 +1,17 @@
-# pull official base image
 FROM node:16.2.0-alpine
 
-# set working directory
+LABEL version="1.0"
+LABEL description="This is the base docker image for the Console frontend react app."
+LABEL maintainer = "adam.m.deguire@gmail.com"
+
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY ["package.json", "package-lock.json", "./"]
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
 RUN npm install
 
-# add app
-COPY . ./
+COPY . .
 
-# start app
-CMD ["npm", "start"]   
+EXPOSE 3000
+
+CMD ["npm", "start"]
