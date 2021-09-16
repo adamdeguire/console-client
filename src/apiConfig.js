@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
-  production: 'https://console-app-api.herokuapp.com',
-  development: 'http://localhost:4741'
+  production: 'http://consoleapi.eastus.cloudapp.azure.com/',
+  development: 'http://localhost:3081'
 }
 
 window.location.hostname === 'localhost'
