@@ -8,6 +8,7 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <>
+    <NavLink to='/profile-photo' className='nav-link'>Change Profile Photo</NavLink>
     <NavLink to='/change-password' className='nav-link'>Change Password</NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
   </>

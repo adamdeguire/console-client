@@ -15,7 +15,8 @@ import ChangePassword from './components/auth/ChangePassword'
 import EditLog from './components/logs/EditLog/EditLog'
 import Home from './components/Home/Home'
 import Log from './components/logs/Log/Log'
-import Profile from './components/Profile/Profile'
+import Profile from './components/profile/Profile'
+import PhotoUpload from './components/profile/PhotoUpload/PhotoUpload'
 
 class App extends Component {
   constructor (props) {
@@ -132,6 +133,12 @@ class App extends Component {
 	          exact
 	          path='/profile/:username'
 	          render={() => <Profile msgAlert={this.msgAlert} user={user} />}
+	        />
+	        <AuthenticatedRoute
+	          user={user}
+	          exact
+	          path='/profile-photo'
+	          render={() => <PhotoUpload msgAlert={this.msgAlert} user={user} />}
 	        />
 	        <Footer msgAlert={this.msgAlert} user={user} />
 	      </main>

@@ -1,6 +1,6 @@
 let apiUrl
 const apiUrls = {
-  production: 'http://consoleapi.eastus.cloudapp.azure.com/',
+  production: 'http://consoleapi.eastus.cloudapp.azure.com',
   development: 'http://localhost:3081'
 }
 
