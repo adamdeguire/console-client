@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
+import ProfilePhoto from '../../profile/ProfilePhoto/ProfilePhoto'
 import CreateComment from '../../comments/CreateComment/CreateComment'
 import Comments from '../../comments/Comments'
 import LogDate from '../../LogDate/LogDate'
@@ -104,6 +105,9 @@ class LogContainer extends Component {
     return (
       <div className="log showLog logContainer" onClick={e => this.goToLog(e)}>
         <div className="log showLog logTitle">
+          <ProfilePhoto
+            user={log.owner}
+          />
           <Link
             to={`/profile/${log.owner.username}`}
             className="log logOwner">

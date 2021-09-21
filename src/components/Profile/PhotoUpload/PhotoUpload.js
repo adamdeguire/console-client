@@ -1,39 +1,41 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import ImageUploader from 'react-images-upload'
+import { updateProfilePhoto } from '../../../api/profile'
 
 class PhotoUpload extends Component {
   constructor (props) {
     super(props)
     this.state = {
       url: '',
-      picture: null
+      photo: null
     }
-    this.onDrop = this.onDrop.bind(this)
+    this.updatePhoto = this.updatePhoto.bind(this)
   }
 
-  onDrop (picture) {
-    console.log(typeof picture)
-    console.log(picture)
-    const url = URL.createObjectURL(picture[0])
-    console.log(url)
-    this.setState({ url, picture })
+  updatePhoto (e) {
+    e.preventDefault()
+    const { user } = this.props
+    const input = document.getElementById('photoUpload')
+
+    updateProfilePhoto(user, input.files[0].name)
+      .then(() => document.getElementById('photoUploadForm').submit())
+      .then(() => window.close())
   }
 
   render () {
     return (
-      <>
-        <img src={this.state.url} />
-        <ImageUploader
-          withIcon={true}
-          buttonText='Choose images'
-          onChange={this.onDrop}
-          imgExtension={['.jpg', '.png']}
-          maxFileSize={5242880}
-          singleImage={true}
-        />
-      </>
+      <form
+        id="photoUploadForm"
+        method='post'
+        action='https://consolephotoupload.azurewebsites.net/api/UploadPhoto'
+        encType='multipart/form-data'
+        target="_blank"
+      >
+        <label htmlFor='photoUpload'>Select a photo:</label>
+        <input type='file' id='photoUpload' name='filename' /><br />
+        <button onClick={this.updatePhoto}>Submit</button>
+      </form>
     )
   }
 }

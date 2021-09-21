@@ -11,3 +11,29 @@ export const getProfile = (user, location) => {
     }
   })
 }
+
+export const updateProfilePhoto = (user, filename) => {
+  return axios({
+    method: 'PATCH',
+    url: `${apiUrl}/profile-photo`,
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    },
+    data: {
+      filename
+    }
+  })
+}
+
+export const uploadToBlob = (formData) => {
+  return axios({
+    method: 'POST',
+    url: 'https://consolephotoupload.azurewebsites.net/api/UploadPhoto/',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data: {
+      formData
+    }
+  })
+}

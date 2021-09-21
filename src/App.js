@@ -138,7 +138,7 @@ class App extends Component {
 	          user={user}
 	          exact
 	          path='/profile-photo'
-	          render={() => <PhotoUpload msgAlert={this.msgAlert} user={user} />}
+	          render={() => <PhotoUpload msgAlert={this.msgAlert} user={user} setUser={this.setUser} />}
 	        />
 	        <Footer msgAlert={this.msgAlert} user={user} />
 	      </main>
